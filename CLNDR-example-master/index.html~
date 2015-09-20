@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles/clndr.css">
+  <script src="json2.js"></script>
+  <script src="jquery.min.js"></script>
+  <script src="underscore-min.js"></script>
+  <script src= "moment-2.2.1.js"></script>
+  <script src="clndr.js"></script>
+  <script src="site.js"></script>
+  <script type="text/javascript">
+      // Your code goes here.
+	$(document).ready( function() {
+
+  		// here's some magic to make sure the dates are happening this month.
+  		var thisMonth = moment().format('YYYY-MM');
+
+  		// Here's our events array. We could grab this via AJAX as well.
+  		var eventArray = [
+   	 		{ date: '2013-11-25', title: 'Mi cumpleanos', url: 'http://www.hogarsigloxxi.com' }
+  		];
+
+  		var clndr2 = $('#mini-clndr').clndr({
+   			 template: $('#mini-clndr-template').html(),
+    			 events: eventArray,
+    			 clickEvents: {
+      				click: function(target) {
+        				if(target.events.length) {
+          					var daysContainer = $('#mini-clndr').find('.days-container');
+          					daysContainer.toggleClass('show-events', true);
+          					$('#mini-clndr').find('.x-button').click( function() {
+            						daysContainer.toggleClass('show-events', false);
+          					});
+        				}
+      				}
+    			},
+    			adjacentDaysChangeMonth: true
+  		});
+
+
+  	});
+</script>
+</head>
+<body>
+   </br>
+   <div class="container">
+      <div class="inner">
+        <div id="mini-clndr">
+          <script id="mini-clndr-template" type="text/template">
+
+ 		<div class="controls">
+              		<div class="clndr-previous-button">&lsaquo;</div><div class="month"><%= month %> <%= year %></div><div class="clndr-next-button">&rsaquo;</div>
+            	</div>
+
+            <div class="days-container">
+              <div class="days">
+                <div class="headers">
+                  <% _.each(daysOfTheWeek, function(day) { %><div class="day-header"><%= day %></div><% }); %>
+                </div>
+                <% _.each(days, function(day) { %><div class="<%= day.classes %>" id="<%= day.id %>"><%= day.day %></div><% }); %>
+              </div>
+              <div class="events">
+                <div class="headers">
+                  <div class="x-button">x</div>
+                  <div class="event-header">EVENTS</div>
+                </div>
+                <div class="events-list">
+                  <% _.each(eventsThisMonth, function(event) { %>
+                    <div class="event">
+                      <a href="<%= event.url %>"><%= moment(event.date).format('MMMM Do') %>: <%= event.title %></a>
+                    </div>
+                  <% }); %>
+                </div>
+              </div>
+            </div>
+      </script>
+   </div>
+    </div>
+  </div>
+</body>
+</html>

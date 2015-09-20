@@ -1,0 +1,423 @@
+<!DOCTYPE HTML>
+<!--
+	Inspired from Big Picture
+-->
+<html>
+	<head>
+		<title>Vent over Tea</title>
+	    
+	    <meta name="description" content="A place to keep track of all the theatre events in Montreal">
+	    <meta name="keywords" content="theatre mtl, theatre events, montreal, events, theatre, montreal theatre, plays in montreal, theatre events in montreal, list of plays in montreal, calendar of plays, theatre montreal, theatre website montreal, plays montreal, plays website montreal, art in montreal, schedule theatre, plays to see in montreal, plays to see, plays">
+	    <meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta property="og:image" content="TheatreMTL.png">
+
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="calendar/styles/clndr.css">
+  
+		<script src="calendar/doT.js"></script>
+		<script src="calendar/jquery.min.js"></script>
+		<script src="calendar/underscore-min.js"></script>
+		<script src= "calendar/moment-2.2.1.js"></script>
+		<script src="calendar/clndr.js"></script>
+		<script src="calendar/site.js"></script>
+		<script type="text/javascript">
+
+			// Code related to the calendar
+			$(document).ready( function() {
+				// here's some magic to make sure the dates are happening this month.
+				var thisMonth = moment().format('YYYY-MM');
+				// Here's our events array. We could grab this via AJAX as well.
+				var eventArray = [
+			 		{ 
+			 			date: '2015-04-02', 
+			 			title: 'BLUE PLANET - a play for children by Andri Snaer Magnason', 
+			 			url: 'https://www.facebook.com/events/836271696421956/' 
+			 		},
+					{
+						date: '2015-07-03',
+						title: 'TWELFTH NIGHT - a comedy by William Shakespeare',
+						url: 'http://repercussiontheatre.com/jeanne-mance-park-plateau-mont-royal/'
+					},
+     					{
+                                                date: '2015-07-07',
+                                                title: 'TWELFTH NIGHT - a comedy by William Shakespeare',
+                                                url: 'http://repercussiontheatre.com/canadian-centre-for-architecture-ville-marie/'
+                                        },
+					{
+                                                date: '2015-07-09',
+                                                title: 'TWELFTH NIGHT - a comedy by William Shakespeare',
+                                                url: 'http://repercussiontheatre.com/jarry-park-parc-extension/'
+                                        },
+                                        {
+                                                date: '2015-07-10',
+                                                title: 'TWELFTH NIGHT - a comedy by William Shakespeare',
+                                                url: 'http://repercussiontheatre.com/philippe-laheurte-park-saint-laurent/'
+                                        },
+                                        {
+                                                date: '2015-07-11',
+                                                title: 'TWELFTH NIGHT - a comedy by William Shakespeare',
+                                                url: 'http://repercussiontheatre.com/westmount-park-westmount/'
+                                        },
+                                        {
+                                                date: '2015-07-12',
+                                                title: 'TWELFTH NIGHT - a comedy by William Shakespeare',
+                                                url: 'http://repercussiontheatre.com/westmount-park-westmount/'
+                                        },
+                                        {
+                                                date: '2015-07-15',
+                                                title: 'TWELFTH NIGHT - a comedy by William Shakespeare',
+                                                url: 'http://repercussiontheatre.com/mount-royal-cemetery-outremont/'
+                                        },
+                                        {
+                                                date: '2015-07-16',
+                                                title: 'TWELFTH NIGHT - a comedy by William Shakespeare',
+                                                url: 'http://repercussiontheatre.com/honorable-george-oreilly-park-verdun/'
+                                        },
+                                        {
+                                                date: '2015-07-17',
+                                                title: 'TWELFTH NIGHT - a comedy by William Shakespeare',
+                                                url: 'http://repercussiontheatre.com/cabot-square-ville-marie/'
+                                        },
+                                        {
+                                                date: '2015-07-21',
+                                                title: 'TWELFTH NIGHT - a comedy by William Shakespeare',
+                                                url: 'http://repercussiontheatre.com/ndg-park-ndg/'
+                                        },
+                                        {
+                                                date: '2015-07-22',
+                                                title: 'TWELFTH NIGHT - a comedy by William Shakespeare',
+                                                url: 'http://repercussiontheatre.com/pierre-elliott-trudeau-park-cote-saint-luc/'
+                                        },
+                                        {
+                                                date: '2015-07-23',
+                                                title: 'TWELFTH NIGHT - a comedy by William Shakespeare',
+                                                url: 'http://repercussiontheatre.com/pine-beach-park-dorval/'
+                                        },
+                                        {
+                                                date: '2015-07-24',
+                                                title: 'TWELFTH NIGHT - a comedy by William Shakespeare',
+                                                url: 'http://repercussiontheatre.com/centennial-park-beaconsfield/'
+                                        },
+                                        {
+                                                date: '2015-07-25',
+                                                title: 'TWELFTH NIGHT - a comedy by William Shakespeare',
+                                                url: 'http://repercussiontheatre.com/westmount-park-westmount/'
+                                        },
+                                        {
+                                                date: '2015-07-26',
+                                                title: 'TWELFTH NIGHT - a comedy by William Shakespeare',
+                                                url: 'http://repercussiontheatre.com/westmount-park-westmount/'
+                                        }
+						
+
+				];
+
+				var clndrTemplate = doT.template( $('#dot-template').html() );
+
+			    var clndr2 = $('#mini-clndr').clndr({         
+			                    events: eventArray,
+			                    clickEvents: {
+			                    	click: function(target) {
+			                        	if(target.events.length) {
+											var daysContainer = $('#mini-clndr').find('.days-container');
+			                                    daysContainer.toggleClass('show-events', true);
+			                                    $('#mini-clndr').find('.x-button').click( function() {
+			                                        daysContainer.toggleClass('show-events', false);
+			                                    });
+			                            }
+			                        }
+			                    },
+			                    adjacentDaysChangeMonth: true,
+			                		render: function(data) {
+			                       		return clndrTemplate(data);
+			               			}
+			    });
+			});
+
+		</script>
+
+	<script id="dot-template" type="text/template">
+        <div class="controls">
+           <div class="clndr-previous-button">&lsaquo;</div><div class="month">{{= it.month }} {{= it.year }}</div><div class="clndr-next-button">&rsaquo;</div>
+        </div>
+        <div class="days-container">
+            <div class="days">
+                <div class="headers">
+                  {{~it.daysOfTheWeek :day:index}}<div class="day-header">{{= day }}</div>{{~}}
+                </div>
+                 {{~it.days :day:index}}<div class="{{= day.classes }}" id="{{= day.id }}">{{= day.day }}</div>{{~}}
+              	</div>
+        <div class="events">
+                <div class="headers">
+                  	<div class="x-button">x</div>
+                  	<div class="event-header">EVENTS</div>
+                </div>
+                <div class="events-list">
+                 {{~it.eventsThisMonth :event:index}}
+                    	<div class="event">
+                      		<a href="{{= event.url }}">{{= moment(event.date).format('MMMM Do') }}: {{= event.title }}</a>
+                		</div>
+                  		{{~}}
+                </div>
+              	</div>
+        </div>
+	</script>
+
+	</head>
+
+	<body>
+        
+		<!-- Header -->
+			<header id="header">
+
+				<!-- Logo -->
+					<h1 id="language">FR</h1>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul>
+                            <li><a href="#intro">Home</a></li>
+							<li><a href="#about">About</a></li>
+							<li><a href="appointment.html">Appointments</a></li>
+<!--                            <li><a href="#work">Additional Ressources</a></li>-->
+							<li><a href="#contact">Contact</a></li>
+						</ul>
+					</nav>
+
+                    <h1 id="logo"><img src="vot.png" width="60" height="60" align="right"></h1>
+                
+			</header>
+
+		<!-- Intro -->
+			<section id="intro" class="main style1 dark fullscreen">
+				<div class="content container 75%">
+					<header>
+						<h2>Vent over Tea</h2>
+					</header>
+					<p>If you need to talk, we're here to listen.</p>
+					<footer>
+                        <section class="color-4">
+                            <p><a href="appointment.html"><button class="btn btn-4 btn-4a icon-arrow-right">Set an apppointment</button></a></p>
+                        </section>
+					</footer>
+				</div>
+			</section>
+		
+        <section id="about" class="main style3 secondary">
+<!--
+				<div class="content container">
+					<header>
+						<h2>About Us</h2>
+                        </br>
+                        Vent over Tea is a volunteer­-run listening service. We aim to provide a casual, confidential and non­judgmental outlet for members of our community. Our volunteers are trained in active listening and help individuals work through their problems by providing them with a space to vent. Our mission is to tear down the stigma associated with seeking help by providing a highly accessible and casual service for anyone who needs a listening ear.
+					</header>
+-->
+            
+            		<div id="one">
+			<div class="content text-center">
+
+<!--
+				<div class="day">
+				 1
+				</div>	
+-->
+
+				<div class="firstfont text-uppercase">
+					Vent over Tea
+				</div>	
+
+				<div class="secondfont">
+					  Vent over Tea is a volunteer­-run listening service. We aim to provide a casual, confidential and non­judgmental outlet for members of our community. Our volunteers are trained in active listening and help individuals work through their problems by providing them with a space to vent. Our mission is to tear down the stigma associated with seeking help by providing a highly accessible and casual service for anyone who needs a listening ear.
+				</div>
+ 
+
+<!--
+				<div class="colophon text-uppercase">
+						Set in <a href="https://www.google.com/fonts/specimen/Montserrat">Montserrat</a> and <a href="https://www.google.com/fonts/specimen/Playfair+Display">Playfair Display</a> 
+				</div>	
+-->
+
+			</div>
+		</div>
+
+<!--End Day 1-->
+
+
+
+<!--	</div>	-->
+
+            
+            
+            
+            
+            
+<!--
+
+					<div class="container">
+      					<div class="inner">
+        					<div id="mini-clndr">
+   							</div>
+    					</div>
+  					</div>
+-->
+<!--				</div>-->
+			</section>
+        
+<!--
+            <section id="work" class="main style3 secondary">
+				<div class="content container">
+					<header>
+						<h2>More ressources</h2>
+                        </br>
+                        <details>
+                            <summary>This is a link: MacBook Pro Specification</summary>
+-->
+<!--
+                                <ul>
+                                    <li><strong>13.3-inch LED-backlit glossy widescreen display</strong> with edge-to-edge, uninterrupted glass (1280 x 800-pixel resolution).</li>
+                                    <li><strong>2.4 GHz Intel Core i5 dual-core processor</strong> with 3 MB shared L3 cache for excellent multitasking.</li>
+                                    <li><strong>Intel HD Graphics 3000</strong> with 384 MB of DDR3 SDRAM shared with main memory.</li>
+                                    <li><strong>500 GB Serial ATA hard drive</strong> (5400 RPM)</li>
+                                    <li><strong>4 GB installed RAM</strong> (1333 MHz DDR3; supports up to 8 GB)</li>
+                                </ul>
+-->
+<!--
+                        </details>
+					</header>
+-->
+<!--
+					<div class="container">
+      					<div class="inner">
+        					<div id="mini-clndr">
+   							</div>
+    					</div>
+  					</div>
+-->
+<!--
+				</div>
+			</section>
+-->
+
+		<!-- Contact -->
+			<section id="contact" class="main style3 secondary">
+				<div class="content container">
+					<header>
+						<h2>Contact Vent over Tea</h2>
+						<p>For any questions, send us a message :)
+						</p>
+					</header>
+					<div class="box container 75%">
+
+					<!-- Contact Form -->
+							<form method="post" name="subForm" action="#" onsubmit="return validateForm()">
+								<div class="row 50%">
+									<div class="6u 12u(mobile)">
+										<input type="text" name="name" id="name" placeholder="Your Name" required/>
+
+									</div>
+									<div class="6u 12u(mobile)">
+										<input type="email" name="email" id="email" placeholder="Your Email" required/>
+
+									</div>
+								</div>
+								<div class="row 50%">
+									<div class="12u">
+										<textarea name="message" id="message" placeholder="Something to say" rows="6" required></textarea>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="12u">
+
+										<ul class="actions">
+											<li>
+												<!-- <input type="submit" value="try me"/> -->
+												<input type="submit" value="Send Message" id="send_email" />
+											</li>
+										</ul>
+									</div>
+								</div>
+							</form>
+					</div>
+				</div>
+			</section>
+
+		<!-- Footer -->
+			<footer id="footer">
+
+				<!-- Icons -->
+					<ul class="actions">
+						<li><a href="https://www.facebook.com/ventovertea" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+					</ul>
+
+				<!-- Menu -->
+					<ul class="menu">
+						<li>&copy; VentOverTea</li>
+						<li>vent@ventovertea.com</li>
+					</ul>
+
+			</footer>
+
+		<!-- Scripts -->
+
+			<script src="assets/js/jquery.poptrox.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+
+	<script>
+			//Email logic
+				
+				var name;
+				var subject;
+				var text;
+				
+				function validateForm() {
+					var nameForm = document.forms["subForm"]["name"].value;
+					var emailForm = document.forms["subForm"]["email"].value;
+					var textForm = document.forms["subForm"]["message"].value;
+    				if (nameForm == ""){
+    					return false;
+    				}    				
+    				if (emailForm == ""){ 
+    					return false;
+    				}
+    				if (textForm == ""){
+        				return false;
+    				}
+    				return true;
+				}
+
+				$("#send_email").click(function(){
+
+					if(validateForm()){
+						name = $("#name").val();      
+						dest = $("#email").val();
+						text = $("#message").val();
+
+						$.get("http://www.theatremtl.com/send", {
+							name:name, 
+							dest:dest, 
+							text:text
+						});
+
+						document.getElementById("send_email").value="Thank You!";
+						
+						return false;
+					}
+
+					document.getElementById("send_email").onclick = function() {
+    					//disable
+    					this.disabled = true;
+					}
+			
+				});		
+		
+	</script>
+
+</html>

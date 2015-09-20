@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles/clndr.css">
+</head>
+<body>
+  <div class="container">
+  
+    <div id="calendar" class="cal2">
+      
+    </div>
+
+    <div class="listado">
+        <span class="fecha"> xxxx </span>
+    </div>
+
+
+    <script type="text/template" id="calendar-template">
+
+     <div class="clndr-controls">
+        <div class="clndr-previous-button">&lsaquo;</div>
+        <div class="month"><%= month %></div>
+        <div class="clndr-next-button">&rsaquo;</div>
+      </div>
+
+      <div class="clndr-grid">
+        <div class="days-of-the-week">
+          
+          <% _.each(daysOfTheWeek, function(day) { %>
+            <div class="header-day"><%= day %></div>
+          <% }); %>
+          
+          <div class="days">
+            <% _.each(days, function(day) { %>
+              <div class="<%= day.classes %>">                 
+                 <%  //if( !$(day.element).hasClass('last-month') ) { console.log(day); }
+                    if(_.size(day.events) > 0 ){ /*console.log('total: '+ day.events[0].total) */ %>
+
+                      <span class="total-by-date"> <%= day.events[0].total %> </span>
+
+                  <% } %>
+
+                <%= day.day %> 
+              </div>
+            <% }); %>
+          </div>
+
+        </div>
+      </div>
+    </script>
+
+  </div>
+
+
+  <script src="json2.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+  <script src= "moment-2.2.1.js"></script>
+
+  <script src="../src/clndr.js"></script>
+  <script>
+    $(document).ready( function() {
+      // there are a lot of options. the rabbit hole is deep.
+      theCalendarInstance = $('#calendar').clndr({
+        template: $('#calendar-template').html(),
+        weekOffset: 1,
+        daysOfTheWeek: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
+        numberOfRows: 5,
+        //startWithMonth: "2013-05-01",
+        events: [
+          { date: '2013-10-09', total: 5 },
+          { date: '2013-11-15', total: 10 },
+          { date: '2013-11-20', total: 13 },
+          { date: '2013-01-05', total: 8 },
+          { date: '2013-12-25', total: 3 }
+        ],
+        dateParameter: 'date',
+        showAdjacentMonths: true,
+        adjacentDaysChangeMonth: false,
+        clickEvents: {
+          click: function(target) {
+            //console.log(target);
+
+            if(_.size(target.events) > 0 ){
+              //console.log('total: '+ target.events[0].total);
+              getListado(target);
+            } 
+
+          },
+          onMonthChange: function(month) {
+            //console.log('you just went to ' + month.format('M-YYYY'));            
+            
+            var actualYear = new Date().getFullYear();
+            var selectedYear = month.format('YYYY');
+            var selectedMonth = month.format('M');
+
+            if(actualYear != selectedYear){ //IE8 hack, because there are a bug with contraints over IE8
+
+              if(selectedMonth == 12) theCalendarInstance.forward(); //Go back to January
+              if(selectedMonth == 01) theCalendarInstance.back(); //Go back to December
+
+            }
+
+
+            //theCalendarInstance.setMonth(09); // Set the month using a number from 0-11 or a month name            
+            //theCalendarInstance.setEvents(newEventsArray); //// Change the events. Note that this triggers a re-render of the calendar.
+            //theCalendarInstance.addEvents(additionalEventsArray); // Add events. Note that this triggers a re-render of the calendar.
+            //theCalendarInstance.forward(); // Go to the next month            
+            //theCalendarInstance.back(); // Go to the previous month           
+          }
+        },
+        doneRendering: function() {
+          //console.log('this would be a fine place to attach custom event handlers.****');
+        },
+        constraints: {
+          startDate: new Date().getFullYear()+'-01-01',
+          endDate: new Date().getFullYear()+'-12-31'
+        }        
+      });
+    });
+
+
+    function getListado(target){
+      //console.log(target.events[0].date);
+      $('div.listado span.fecha').html(target.events[0].date);
+    }
+
+  </script>
+
+</body>
+</html>

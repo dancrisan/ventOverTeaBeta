@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles/clndr.css">
+  <script src="doT.js"></script>
+  <script src="jquery.min.js"></script>
+  <script src="underscore-min.js"></script>
+  <script src= "moment-2.2.1.js"></script>
+  <script src="clndr.js"></script>
+  <script src="site.js"></script>
+  <script type="text/javascript">
+      // Your code goes here.
+	$(document).ready( function() {
+
+  		// here's some magic to make sure the dates are happening this month.
+  		var thisMonth = moment().format('YYYY-MM');
+
+  		// Here's our events array. We could grab this via AJAX as well.
+  		var eventArray = [
+   	 		{ date: '2013-11-25', title: 'Mi cumpleanos', url: 'http://www.hogarsigloxxi.com' }
+  		];
+
+  		var clndrTemplate = doT.template( $('#dot-template').html() );
+
+            var clndr2 = $('#mini-clndr').clndr({         
+                             events: eventArray,
+                             clickEvents: {
+                                      click: function(target) {
+                                        if(target.events.length) {
+                                                  var daysContainer = $('#mini-clndr').find('.days-container');
+                                                  daysContainer.toggleClass('show-events', true);
+                                                  $('#mini-clndr').find('.x-button').click( function() {
+                                                            daysContainer.toggleClass('show-events', false);
+                                                  });
+                                        }
+                                      }
+                            },
+                            adjacentDaysChangeMonth: true,
+                        render: function(data) {
+                               return clndrTemplate(data);
+                       }
+            });
+
+
+  	});
+</script>
+<script id="dot-template" type="text/template">
+        <div class="controls">
+           <div class="clndr-previous-button">&lsaquo;</div><div class="month">{{= it.month }} {{= it.year }}</div><div class="clndr-next-button">&rsaquo;</div>
+        </div>
+        <div class="days-container">
+              <div class="days">
+                <div class="headers">
+                  {{~it.daysOfTheWeek :day:index}}<div class="day-header">{{= day }}</div>{{~}}
+                </div>
+                 {{~it.days :day:index}}<div class="{{= day.classes }}" id="{{= day.id }}">{{= day.day }}</div>{{~}}
+              </div>
+         <div class="events">
+                <div class="headers">
+                  <div class="x-button">x</div>
+                  <div class="event-header">EVENTS</div>
+                </div>
+                <div class="events-list">
+                 {{~it.eventsThisMonth :event:index}}
+                    <div class="event">
+                      <a href="{{= event.url }}">{{= moment(event.date).format('MMMM Do') }}: {{= event.title }}</a>
+                    </div>
+                  {{~}}
+                </div>
+              </div>
+         </div>
+
+</script>
+</head>
+<body>
+   </br>
+   <div class="container">
+      <div class="inner">
+        <div id="mini-clndr">
+
+   </div>
+    </div>
+  </div>
+</body>
+</html>
