@@ -9,13 +9,15 @@
 		<meta name="keywords" content="fullscreen form, css animations, distraction-free, web design" />
 		<meta name="author" content="Codrops" />
 		<link rel="shortcut icon" href="../favicon.ico">
-                <link rel="stylesheet" type="text/css" href="css/default2.css" />
-		<link rel="stylesheet" type="text/css" href="css/component2.css" />
-		<link rel="stylesheet" type="text/css" href="css_ap/normalize.css" />
+<!--                <link rel="stylesheet" type="text/css" href="css/default2.css" />-->
+<!--		<link rel="stylesheet" type="text/css" href="css/component2.css" />-->
+<!--		<link rel="stylesheet" type="text/css" href="css_ap/normalize.css" />-->
 		<link rel="stylesheet" type="text/css" href="css_ap/demo.css" />
 		<link rel="stylesheet" type="text/css" href="css_ap/component.css" />
-		<link rel="stylesheet" type="text/css" href="css_ap/cs-select.css" />
-		<link rel="stylesheet" type="text/css" href="css_ap/cs-skin-boxes.css" />
+        <link rel="stylesheet" href="css_radioButtons/normalize.css">
+	   <link rel="stylesheet" href="css_radioButtons/style.css">
+<!--		<link rel="stylesheet" type="text/css" href="css_ap/cs-select.css" />-->
+<!--		<link rel="stylesheet" type="text/css" href="css_ap/cs-skin-boxes.css" />-->
         
         
 
@@ -39,23 +41,69 @@
 -->
 					</div>
 				</div>
+ 
 				<form id="myform" class="fs-form fs-form-full" autocomplete="off" action="index.html">
+
 					<ol class="fs-fields">
+ 
 						<li>
 							<label class="fs-field-label fs-anim-upper" for="q1">What's your name?</label>
 							<input class="fs-anim-lower" id="q1" name="q1" type="text" placeholder="Dean Moriarty" required/>
 						</li>
+                        
 						<li>
 							<label class="fs-field-label fs-anim-upper" for="q2" data-info="We won't send you spam, we promise...">What's your email address?</label>
 							<input class="fs-anim-lower" id="q2" name="q2" type="email" placeholder="dean@road.us" required/>
 						</li>
 						<li data-input-trigger>
 							<label class="fs-field-label fs-anim-upper" for="q3" data-info="Info here">Gender</label>
-							<div class="fs-radio-group fs-radio-custom clearfix fs-anim-lower">
-								<span><input id="q3b" name="q3" type="radio" value="conversion"/>Other</span>
-								<span><input id="q3c" name="q3" type="radio" value="social"/>Male</span>
-								<span><input id="q3a" name="q3" type="radio" value="mobile"/>Female</span>
+							<div class="fs-radio-group fs-radio-custom fs-anim-lower radio">
+<!--                                <div class="radio">-->
+                                    <input id="female" type="radio" name="gender" value="female">
+                                        <label for="female" class="radioName">Female</label>
+                                    <input id="male" type="radio" name="gender" value="male">
+                                        <label for="male" class="radioName">Male</label>
+                                    <input id="other" type="radio" name="gender" value="other">
+                                        <label for="other" class="radioName">Other</label>
+
+                                </div>
+<!--
+                                <table style="width:100%">
+  <tr>
+    <td><span><input id="q3b" name="q3" type="radio" value="conversion"/>Other</span></td>
+  </tr>
+  <tr>
+    <td><span><input id="q3c" name="q3" type="radio" value="social"/>Male</span></td>
+  </tr>
+                                      <tr>
+    <td><span><input id="q3c" name="q3" type="radio" value="social"/>Female</span></td>
+  </tr>
+                                    
+                                </table>
+-->
+<!--
+                                <input type="radio" name="sex" value="male" checked> Male
+                                <input type="radio" name="sex" value="male" checked> Female
+-->
+                                
+<!--
+                                
+                                
+                                    <span><input id="q3b" name="q3" type="radio" value="conversion"/>Other</span>
+                                    <span><input id="q3c" name="q3" type="radio" value="social"/>Male</span>
+                                    <span><input id="q3a" name="q3" type="radio" value="mobile"/>Female</span>
+                                
 							</div>
+-->
+<!--
+                            <div class="radio">
+                                <input id="male" type="radio" name="gender" value="male">
+                                <label for="male" class="radioName">Male</label>
+                                <input id="female" type="radio" name="gender" value="female">
+                                <label for="female" class="radioName">Female</label>
+                            </div>
+-->
+                           
 						</li>
 						<li data-input-trigger>
 							<label class="fs-field-label fs-anim-upper" data-info="So we can assign one of our volunteers">When are your availabilities?</label>

@@ -280,7 +280,7 @@ button.fs-continue,
 }
 
 .fs-fields .fs-radio-custom input[type="radio"] {
-	position: absolute;
+	position: static;
 	display: block;
 	margin: 30px auto 20px;
 	margin: 0 auto 20px;
@@ -317,13 +317,15 @@ button.fs-continue,
 	font-size: 75%;
 }
 
-.fs-fields > li .fs-radio-custom label {
-	display: block;
+/*.fs-fields > li .fs-radio-custom label {*/
+/*	display: block;*/
+/*
 	padding-top: 100%;
 	width: 100%;
 	height: 100%;
 	cursor: pointer;
 }
+*/
 
 .fs-fields .fs-radio-custom label::after {
 	position: absolute;
